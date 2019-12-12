@@ -30,14 +30,14 @@ repositories {
 minecraft {
     version = '1.7.10'
     mcpVersion = '9.05'
-    mainClass = 'cpw.mods.fml.relauncher.ServerLaunchWrapper'
+    mainClass = 'red.mohist.Mohist'
     tweakClass = 'cpw.mods.fml.common.launcher.FMLTweaker'
     installerVersion = "1.4"
     srgExtra "PK: org/bukkit/craftbukkit org/bukkit/craftbukkit/v1_7_R4"
 }
 
 group = 'red.mohist'
-version = '1.7.10-1.1'
+version = '1.7.10-' + 'git rev-parse --short HEAD'.execute().text.trim()
 
 configurations {
     compile.extendsFrom exported
@@ -105,11 +105,11 @@ tasks.packageUniversal {
     classifier = 'server'
     setManifest {}
     manifest.attributes([
-            'Manifest-Version' : '1.0',
+            'Manifest-Version' : '1.1',
             'Implementation-Title'  : project.name,
-            'Implementation-Version': project.version,
+            'Implementation-Version': 'git rev-parse --short HEAD'.execute().text.trim(),
             'TweakClass'            : 'cpw.mods.fml.common.launcher.FMLTweaker',
-            'Main-Class'            : 'cpw.mods.fml.relauncher.ServerLaunchWrapper',
+            'Main-Class'            : 'red.mohist.Mohist',
             'Class-Path'            : generateClasspath()
     ])
 }
